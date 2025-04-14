@@ -1,266 +1,269 @@
 :root {
-    --primary: #89eb00;
-    --primary-hover: #77ff00;
-    --background: #dcdcdc;
-    --text: #1a1a1a;
-    --card-bg: rgba(255, 255, 255, 0.9);
-    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .dark {
-    --background: #0a0a0a;
-    --text: #ffffff;
-    --card-bg: rgba(17, 17, 17, 0.9);
-    --shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
-  }
-  
-  /* Chatbox Container */
-  .chatbox-container {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    background-color: var(--background);
-    color: var(--text);
-  }
-  
-  /* Control Bar */
-  .control-bar {
-    display: flex;
-    gap: 1rem;
+  --primary: #89eb00;
+  --primary-hover: #77ff00;
+  --background: #dcdcdc;
+  --text: #1a1a1a;
+  --card-bg: rgba(255, 255, 255, 0.9);
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dark {
+  --background: #0a0a0a;
+  --text: #ffffff;
+  --card-bg: rgba(17, 17, 17, 0.9);
+  --shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+}
+
+/* Chatbox Container */
+.chatbox-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: var(--background);
+  color: var(--text);
+}
+
+/* Control Bar */
+.control-bar {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.control-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: none;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.control-button:hover {
+  color: var(--primary);
+}
+
+.control-button .icon {
+  font-size: 1.2rem;
+}
+
+/* Chat Content */
+.chat-content {
+  flex: 1;               /* Added to fill remaining vertical space */
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 2rem;
+  padding: 2rem;
+  overflow: hidden;      /* Prevent content from overflowing and pushing down UI */
+}
+
+/* Avatar Section */
+.avatar-section {
+  display: flex;
+  background-color: var(--card-bg);
+  border-radius: 1rem;
+  padding: 1rem;
+  justify-content: center;
+  align-items: center;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+  height: 100%;
+}
+
+.avatar-image {
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+}
+
+/* Main Chat Area */
+.main-chat-area {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1;             /* Ensures the chat area fills the available space */
+  overflow: hidden;    /* Only allow scrolling within the messages container */
+}
+
+/* Messages Container */
+.messages-container {
+  flex: 1;             /* Takes up remaining space above the input */
+  overflow-y: auto;    /* Enables scrollbar when messages overflow */
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-right: 1rem;
+}
+
+/* Message Bubbles */
+.message-bubble {
+  max-width: 70%;
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: var(--card-bg);
+  box-shadow: var(--shadow);
+}
+
+.user-message {
+  align-self: flex-end;
+  background-color: var(--primary);
+  color: #000;
+}
+
+.bot-message {
+  align-self: flex-start;
+}
+
+.message-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.message-sender {
+  font-weight: 600;
+}
+
+.message-time {
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+
+/* Input Area */
+.input-container {
+  padding: 1rem;
+  background-color: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  box-shadow: var(--shadow);
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.audio-options-wrapper {
+  position: relative;
+}
+
+.mic-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background-color: var(--primary);
+  color: #000;
+  transition: background-color 0.2s;
+}
+
+.mic-button:hover {
+  background-color: var(--primary-hover);
+}
+
+.mic-button.recording {
+  background-color: #ff4444;
+  animation: pulse 1.5s infinite;
+}
+
+.audio-options-menu {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  margin-bottom: 0.75rem;
+  background-color: var(--card-bg);
+  border-radius: 0.75rem;
+  box-shadow: var(--shadow);
+  padding: 0.5rem;
+  z-index: 10;
+  min-width: 180px;
+}
+
+.option-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  width: 100%;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--text);
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.option-item:hover {
+  background-color: var(--primary);
+  color: #000;
+}
+
+.message-input {
+  flex: 1;
+  padding: 0.875rem 1rem;
+  border: none;
+  border-radius: 0.75rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--text);
+}
+
+.send-button {
+  padding: 0.875rem 1.5rem;
+  border: none;
+  border-radius: 0.75rem;
+  background-color: var(--primary);
+  color: #000;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.send-button:hover {
+  background-color: var(--primary-hover);
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .chat-content {
+    grid-template-columns: 1fr;
     padding: 1rem;
-    background-color: var(--card-bg);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  .avatar-section {
+    display: none;
+  }
+  
+  .control-bar span {
+    display: none;
   }
   
   .control-button {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    background: none;
-    border: none;
-    color: var(--text);
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-  
-  .control-button:hover {
-    color: var(--primary);
-  }
-  
-  .control-button .icon {
-    font-size: 1.2rem;
-  }
-  
-  /* Chat Content */
-  .chat-content {
-    flex: 1;
-    display: grid;
-    grid-template-columns: 250px 1fr;
-    gap: 2rem;
-    padding: 2rem;
-  }
-  
-  /* Avatar Section */
-  .avatar-section {
-    display: flex;
-    background-color: var(--card-bg);
-    border-radius: 1rem;
-    padding: 1rem;
-    justify-content: center;
-    align-items: center;
-    box-shadow: var(--shadow);
-    backdrop-filter: blur(10px);
-    height: 100%;
-  }
-  
-  .avatar-image {
-    width: 100%;
-    height: auto;
-    border-radius: 0.5rem;
-  }
-  
-  /* Main Chat Area */
-  .main-chat-area {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  /* Messages Container */
-  .messages-container {
-    flex: 1;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    padding-right: 1rem;
-  }
-  
-  /* Message Bubbles */
-  .message-bubble {
-    max-width: 70%;
-    padding: 1rem;
-    border-radius: 1rem;
-    background-color: var(--card-bg);
-    box-shadow: var(--shadow);
-  }
-  
-  .user-message {
-    align-self: flex-end;
-    background-color: var(--primary);
-    color: #000;
-  }
-  
-  .bot-message {
-    align-self: flex-start;
-  }
-  
-  .message-header {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .message-sender {
-    font-weight: 600;
-  }
-  
-  .message-time {
-    font-size: 0.75rem;
-    opacity: 0.8;
-  }
-  
-  /* Input Area */
-  .input-container {
-    padding: 1rem;
-    background-color: var(--card-bg);
-    backdrop-filter: blur(10px);
-    border-radius: 1rem;
-    box-shadow: var(--shadow);
-  }
-  
-  .input-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-  
-  .audio-options-wrapper {
-    position: relative;
-  }
-  
-  .mic-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
-    background-color: var(--primary);
-    color: #000;
-    transition: background-color 0.2s;
-  }
-  
-  .mic-button:hover {
-    background-color: var(--primary-hover);
-  }
-  
-  .mic-button.recording {
-    background-color: #ff4444;
-    animation: pulse 1.5s infinite;
-  }
-  
-  .audio-options-menu {
-    position: absolute;
-    bottom: 100%;
-    left: 0;
-    margin-bottom: 0.75rem;
-    background-color: var(--card-bg);
-    border-radius: 0.75rem;
-    box-shadow: var(--shadow);
     padding: 0.5rem;
-    z-index: 10;
-    min-width: 180px;
   }
   
-  .option-item {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.75rem;
-    width: 100%;
-    border: none;
-    background: none;
-    cursor: pointer;
-    color: var(--text);
-    border-radius: 0.5rem;
-    transition: all 0.2s ease;
+  .message-bubble {
+    max-width: 85%;
   }
-  
-  .option-item:hover {
-    background-color: var(--primary);
-    color: #000;
-  }
-  
-  .message-input {
-    flex: 1;
-    padding: 0.875rem 1rem;
-    border: none;
-    border-radius: 0.75rem;
-    background-color: rgba(255, 255, 255, 0.1);
-    color: var(--text);
-  }
-  
-  .send-button {
-    padding: 0.875rem 1.5rem;
-    border: none;
-    border-radius: 0.75rem;
-    background-color: var(--primary);
-    color: #000;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
-  
-  .send-button:hover {
-    background-color: var(--primary-hover);
-  }
-  
-  @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .chat-content {
-      grid-template-columns: 1fr;
-      padding: 1rem;
-    }
-    
-    .avatar-section {
-      display: none;
-    }
-    
-    .control-bar span {
-      display: none;
-    }
-    
-    .control-button {
-      padding: 0.5rem;
-    }
-    
-    .message-bubble {
-      max-width: 85%;
-    }
-  }
+}
 
-  /* Interactive Mode Styles */
+/* Interactive Mode Styles */
 .interactive-mode {
   grid-template-columns: 1fr !important;
 }
@@ -277,10 +280,10 @@
 
 .interactive-overlay {
   position: absolute;
-  bottom: 20%;
+  bottom: 30%;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(0,0,0,0.7);
+  background: rgba(0, 0, 0, 0.7);
   color: white;
   padding: 1rem 2rem;
   border-radius: 2rem;
@@ -388,15 +391,24 @@
   border-radius: 1rem;
 }
 
-/* Interactive Overlay */
-.interactive-overlay {
-  position: absolute;
-  bottom: 30%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.7);
-  color: white;
-  padding: 1rem 2rem;
-  border-radius: 2rem;
-  font-size: 1.2rem;
+/* Spinner styling */
+.loading-spinner {
+  border: 4px solid #f3f3f3; /* Light grey */
+  border-top: 4px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  animation: spin 1s linear infinite;
+  margin: 10px auto;
+}
+
+/* Keyframes for the spinning animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Optional: Style for the loading message bubble */
+.message-bubble.loading {
+  opacity: 0.8;
 }

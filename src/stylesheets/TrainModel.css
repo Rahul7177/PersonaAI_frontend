@@ -1,0 +1,45 @@
+.train-model-container {
+    padding: 2rem;
+    max-width: 700px;
+    margin: 0 auto;
+    color: var(--text);
+  }
+  
+  .question-card, .summary-card {
+    background: var(--card-bg);
+    box-shadow: var(--shadow);
+    padding: 2rem;
+    border-radius: 12px;
+  }
+  
+  .question-card h2, .summary-card h2 {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+  }
+  
+  .text-input, .schedule-input input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+  
+  .schedule-input {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .add-slot-btn, .next-btn, .submit-btn {
+    background: var(--primary);
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .add-slot-btn:hover, .next-btn:hover, .submit-btn:hover {
+    background: var(--primary-hover);
+  }
+  

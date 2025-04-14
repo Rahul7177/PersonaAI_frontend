@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import AvatarDisplay from '../components/AvatarDisplay';
 import avatar from '../assets/3d.png';
 import '../stylesheets/Home.css';
 
@@ -8,7 +7,6 @@ const Home = () => {
   const featuresRef = useRef(null);
 
   useEffect(() => {
-    // Scroll animations
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -31,21 +29,27 @@ const Home = () => {
       <section className="hero-section">
         <div className="hero-content">
           <h1 className="hero-title">
-            <span className="highlight">AI Digital Twin</span> Platform
+            <span className="highlight">AI Digital Twin</span> Assistant
           </h1>
           <p className="hero-description">
             Interact with your personalized AI counterpart through natural conversations, 
             voice cloning, and realistic avatar interactions.
           </p>
-          <Link to="/chat" className="cta-button">
-            Get Started
-          </Link>
+
+          <div className="hero-buttons" style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem' }}>
+            <Link to="/chat" className="cta-button secondary">Chat Now</Link>
+            <Link to="/train-data" className="cta-button secondary">Get Started</Link>
+          </div>
+
+          <p className="training-info" style={{ marginTop: '1.5rem', color: '#ccc', maxWidth: '600px' }}>
+            <strong>Customize Your AI Model:</strong> Begin by clicking <em>“Get Started”</em> to play an interactive quiz that helps your AI learn your preferences, daily routine, and communication style. Then train your voice by recording short clips, enabling realistic, voice-based responses from your AI.
+          </p>
         </div>
 
         {/* 3D Avatar Section */}
         <div className="avatar-container">
           <div className="avatar-wrapper">
-            <img src={avatar}/>
+            <img src={avatar} alt="3D Avatar" />
           </div>
         </div>
       </section>

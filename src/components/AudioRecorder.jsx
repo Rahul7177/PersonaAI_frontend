@@ -6,13 +6,11 @@ const AudioRecorder = () => {
 
   const startRecording = () => {
     setRecording(true);
-    // Implement media recorder logic
   };
 
   const stopRecording = () => {
     setRecording(false);
-    // Stop and generate audio URL
-    setAudioURL("sample-audio.mp3"); // Placeholder
+    setAudioURL("sample-audio.mp3"); 
   };
 
   return (
