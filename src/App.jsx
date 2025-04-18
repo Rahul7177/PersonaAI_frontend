@@ -10,6 +10,7 @@ import Login from './pages/Login';
 import Signup from './pages/SignUp';
 import MyAccount from './pages/MyAccount';
 import TrainData from './pages/TrainData';
+import Clone_Voice from './pages/Clone_Voice';
 
 function App() {
   return (
@@ -28,6 +29,8 @@ function App() {
               <Route path="*" element={<Home />} />
               <Route path="/account" element={<MyAccount/>} />
               <Route path="/train-data" element={<TrainData/>} />
+              <Route path="/clone-voice" element={<Clone_Voice/>} />
+
               
             </Routes>
           </main>

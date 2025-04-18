@@ -1,11 +1,14 @@
 /* Base Styles */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
 :root {
-    --primary: #89eb00;
+    --primary: #1fb800;
     --primary-hover: #77ff00;
     --background: #dcdcdc;
     --text: #1a1a1a;
     --card-bg: rgba(255, 255, 255, 0.9);
     --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: "DM Sans", sans-serif;
   }
   
   .dark {
@@ -20,33 +23,37 @@
     background-color: var(--background);
     color: var(--text);
     transition: background-color 0.3s, color 0.3s;
+    font-family: "DM Sans", sans-serif;
   }
   
   /* Home Container */
   .home-container {
-    max-width: 1440px;
-    margin: 0 auto;
+    max-width: 100%;
+    /* margin: 0 auto; */
     padding: 0 2rem;
+    font-family: "DM Sans", sans-serif;
   }
   
   /* Hero Section */
   .hero-section {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 3rem;
-    padding: 4rem 1rem;
-  }
-  
-  .hero-content {
-    text-align: center;
-    max-width: 800px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+    width: 100%;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     padding: 4rem 1.5rem;
+     gap: 2rem;
+     flex-wrap: wrap; /* Makes it responsive */
+    }
+    
+    .hero-content {
+     max-width: 60%;
+     text-align: left;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+    }
+    
+
   
   .hero-title {
     font-size: 4rem;
@@ -89,7 +96,7 @@
   
   .cta-button.secondary {
     background-color: transparent;
-    color: var(--primary);
+    color: var(--text);
     border: 2px solid var(--primary);
   }
   
@@ -102,19 +109,21 @@
     font-size: 1rem;
     line-height: 1.6;
     color: var(--text);
-    max-width: 700px;
-    text-align: center;
+    max-width: 100%;
+    /* text-align: center; */
     opacity: 0.85;
+    margin-top: 15px;
   }
   
   /* Avatar Container */
   .avatar-container {
-    width: 100%;
-    max-width: 600px;
-    height: 400px;
-    position: relative;
-  }
-  
+    flex: 0 0 30%;
+    max-width: 30%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+   }
+   
   .avatar-wrapper {
     width: 100%;
     height: 100%;

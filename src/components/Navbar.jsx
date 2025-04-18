@@ -1,10 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../stylesheets/Navbar.css";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    if (storedUser) {
+      setUser(storedUser);
+    }
+  }, []);
 
   const toggleTheme = () => {
     setIsDarkMode(!isDarkMode);
@@ -26,13 +34,14 @@ const Navbar = () => {
           <Link to="/contact" className="nav-link">
             Contact
           </Link>
-          
           <Link to="/account" className="nav-link">
             My Account
           </Link>
-          <Link to="/login" className="nav-link">
-            Sign Up / Sign In
-          </Link>
+          {!user && (
+            <Link to="/login" className="nav-link">
+              Sign Up / Sign In
+            </Link>
+          )}
           <button onClick={toggleTheme} className="theme-toggle">
             {isDarkMode ? (
               <svg
@@ -68,13 +77,18 @@ const Navbar = () => {
           className="mobile-menu-button"
         >
           {isOpen ? (
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <path d="M6 18L18 6M6 6l12 12" />
-            </svg>
+           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" 
+           width="24" height="24" stroke="currentColor" fill="none" strokeWidth="2">
+        <path d="M6 18L18 6M6 6l12 12" />
+      </svg>
+      
+       
           ) : (
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <path d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" 
+     width="24" height="24" stroke="currentColor" fill="none" strokeWidth="2">
+  <path d="M4 6h16M4 12h16M4 18h16" />
+</svg>
+
           )}
         </button>
       </div>
@@ -95,7 +109,6 @@ const Navbar = () => {
         >
           Contact
         </Link>
-        
         <Link
           to="/account"
           className="mobile-nav-link"
@@ -103,13 +116,15 @@ const Navbar = () => {
         >
           My Account
         </Link>
-        <Link
-          to="/login"
-          className="mobile-nav-link"
-          onClick={() => setIsOpen(false)}
-        >
-          Sign Up / Sign In
-        </Link>
+        {!user && (
+          <Link
+            to="/login"
+            className="mobile-nav-link"
+            onClick={() => setIsOpen(false)}
+          >
+            Sign Up / Sign In
+          </Link>
+        )}
         <button onClick={toggleTheme} className="mobile-theme-toggle">
           {isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
         </button>

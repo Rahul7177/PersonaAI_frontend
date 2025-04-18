@@ -36,12 +36,13 @@ const Home = () => {
             voice cloning, and realistic avatar interactions.
           </p>
 
-          <div className="hero-buttons" style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem' }}>
-            <Link to="/chat" className="cta-button secondary">Chat Now</Link>
+          <div className="hero-buttons" style={{ display: 'flex', gap: '1rem', marginTop: '1.2rem' }}>
             <Link to="/train-data" className="cta-button secondary">Get Started</Link>
+            <Link to="/chat" className="cta-button secondary">Chat Now</Link>
+            <Link to="/clone-voice" className="cta-button secondary">Clone Voice</Link>
           </div>
 
-          <p className="training-info" style={{ marginTop: '1.5rem', color: '#ccc', maxWidth: '600px' }}>
+          <p className="training-info">
             <strong>Customize Your AI Model:</strong> Begin by clicking <em>“Get Started”</em> to play an interactive quiz that helps your AI learn your preferences, daily routine, and communication style. Then train your voice by recording short clips, enabling realistic, voice-based responses from your AI.
           </p>
         </div>

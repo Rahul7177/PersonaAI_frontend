@@ -33,7 +33,7 @@ const Login = () => {
       <form className="auth-form" onSubmit={handleSubmit}>
         <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required className="auth-input" />
         <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} required className="auth-input" />
-        <button type="submit" className="cta-button">Login</button>
+        <button type="submit" className="cta-button secondary">Login</button>
       </form>
       <p className="auth-link">Don't have an account? <Link to="/signup">Sign Up</Link></p>
     </div>

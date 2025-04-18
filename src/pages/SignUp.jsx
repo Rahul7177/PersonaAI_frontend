@@ -67,7 +67,7 @@ const Signup = () => {
           className="auth-input"
           required
         />
-        <button type="submit" className="cta-button">
+        <button type="submit" className="cta-button secondary">
           Sign Up
         </button>
       </form>

@@ -1,1 +1,17 @@
 @import "tailwindcss";
+:root {
+    --primary: #1fb800;
+    --primary-hover: #77ff00;
+    --background: #dcdcdc;
+    --text: #1a1a1a;
+    --card-bg: rgba(255, 255, 255, 0.9);
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: "DM Sans", sans-serif;
+  }
+  
+  .dark {
+    --background: #0a0a0a;
+    --text: #ffffff;
+    --card-bg: rgba(17, 17, 17, 0.9);
+    --shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+  }

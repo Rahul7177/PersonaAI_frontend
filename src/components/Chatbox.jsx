@@ -5,6 +5,7 @@ import {
 } from 'react-icons/fa';
 import '../stylesheets/Chatbox.css';
 import avatarPlaceholder from '../assets/3d.png';
+import { Link } from 'react-router-dom';
 
 const Chatbox = () => {
   const [messages, setMessages] = useState([]);
@@ -21,6 +22,9 @@ const Chatbox = () => {
 
   const recognition = useRef(null);
   const messagesEndRef = useRef(null);
+  const mediaRecorderRef = useRef(null);
+  const audioChunksRef = useRef([]);
+
 
 
   useEffect(() => {
@@ -31,34 +35,48 @@ const Chatbox = () => {
   }, []);
 
   useEffect(() => {
-    if ('webkitSpeechRecognition' in window) {
+     if ('webkitSpeechRecognition' in window) {
       recognition.current = new window.webkitSpeechRecognition();
       recognition.current.continuous = false;
       recognition.current.interimResults = false;
       recognition.current.lang = "en-US";
-      
+    
+      recognition.current.onstart = () => {
+       console.log("Recognition started");
+      };
+    
       recognition.current.onresult = (event) => {
-        const transcript = event.results[0][0].transcript;
-        console.log("Speech recognition result:", transcript);
-        handleSendMessage(transcript);
+       const transcript = event.results[0][0].transcript;
+       console.log("Speech recognized:", transcript);
+       handleSendMessage(transcript);
       };
-      
-      recognition.current.onerror = (event) => {
-        console.error("Speech recognition error:", event.error);
-        if (event.error === "network") {
-          alert("Network error in speech recognition. Please check your internet connection.");
-        } else {
-          alert("Speech recognition error: " + event.error);
+    
+      recognition.current.onend = () => {
+       console.log("Recognition ended");
+       if (isRecording) {
+        // Automatically restart if user is still holding space
+        try {
+         recognition.current.start();
+         console.log("Restarting recognition...");
+        } catch (err) {
+         console.warn("Error restarting recognition:", err);
         }
-        stopRecording();
+       }
       };
-      
-      console.log("webkitSpeechRecognition is supported and initialized.");
-    } else {
-      console.error("webkitSpeechRecognition is not supported in this browser.");
-      alert("Recording is not supported in this browser. Please use Google Chrome or another Chromium-based browser.");
-    }
-  }, []);
+    
+      recognition.current.onerror = (event) => {
+       console.error("Recognition error:", event.error);
+       if (event.error === "network") {
+        alert("Please check your internet connection for speech recognition.");
+       }
+       setIsRecording(false); // Ensure UI reflects the stopped state
+      };
+    
+     } else {
+      alert("Speech recognition is not supported in this browser.");
+     }
+    }, []);
+    
 
   useEffect(() => {
     if (isInteractive) {
@@ -120,33 +138,48 @@ const Chatbox = () => {
     }
   };
 
-  const startRecording = () => {
-    if (recognition.current) {
-      console.log("Starting recording...");
-      try {
-        recognition.current.start();
-        setIsRecording(true);
-      } catch (err) {
-        console.error("Error starting recording:", err);
-        alert("Error starting recording: " + err.message);
-      }
-    } else {
-      console.error("Speech recognition instance not available.");
-    }
-  };
+  const startRecording = async () => {
+     try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      mediaRecorderRef.current = new MediaRecorder(stream);
+      audioChunksRef.current = [];
+    
+      mediaRecorderRef.current.ondataavailable = (event) => {
+       if (event.data.size > 0) {
+        audioChunksRef.current.push(event.data);
+       }
+      };
+    
+      mediaRecorderRef.current.onstop = async () => {
+       const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
+       const file = new File([audioBlob], 'recorded_audio.webm', { type: 'audio/webm' });
+    
+       // Optional prompt:
+       const userPrompt = window.prompt('Add a prompt (optional):');
 
-  const stopRecording = () => {
-    if (recognition.current) {
-      console.log("Stopping recording...");
-      try {
-        recognition.current.stop();
-        setIsRecording(false);
-      } catch (err) {
-        console.error("Error stopping recording:", err);
-        alert("Error stopping recording: " + err.message);
-      }
-    }
-  };
+
+    
+       // Send to backend
+       uploadAudioFile(file, userPrompt);
+      };
+    
+      mediaRecorderRef.current.start();
+      setIsRecording(true);
+      console.log('Recording started');
+     } catch (err) {
+      console.error('Recording failed:', err);
+      alert('Microphone access denied or not supported.');
+     }
+    };
+    
+    const stopRecording = () => {
+     if (mediaRecorderRef.current && mediaRecorderRef.current.state !== 'inactive') {
+      mediaRecorderRef.current.stop();
+      setIsRecording(false);
+      console.log('Recording stopped');
+     }
+    };
+    
 
 
   const handleNewChat = () => {
@@ -257,7 +290,9 @@ const Chatbox = () => {
         </button>
         <button className="control-button">
           <FaClone className="icon" />
+          <Link to='/clone-voice'>
           <span>Voice Clone</span>
+          </Link>
         </button>
         <button className="control-button">
           <FaCog className="icon" />

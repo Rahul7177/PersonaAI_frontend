@@ -1,0 +1,149 @@
+:root {
+  --primary: #89eb00;
+  --primary-hover: #77ff00;
+  --background: #e2e2e2;
+  --text: #1a1a1a;
+  --card-bg: rgba(255, 255, 255, 0.9);
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dark {
+  --background: #0a0a0a;
+  --text: #ffffff;
+  --card-bg: rgba(17, 17, 17, 0.9);
+  --shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text);
+  margin: 0;
+  padding: 0;
+}
+
+.clone-voice-container {
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: var(--card-bg);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+
+.clone-voice-header {
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+  color: var(--primary);
+  margin-bottom: 30px;
+}
+
+.clone-voice-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.clone-voice-card {
+  flex: 1 1 300px;
+  min-width: 250px;
+  padding: 20px;
+  background-color: var(--background);
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.clone-voice-label {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.clone-voice-textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  resize: vertical;
+}
+
+.clone-voice-button {
+  background-color: var(--primary);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.clone-voice-button:hover {
+  background-color: var(--primary-hover);
+}
+
+.clone-voice-file-input {
+  background-color: white;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.clone-voice-loading {
+  text-align: center;
+  color: var(--primary);
+  margin-top: 20px;
+}
+
+.clone-voice-result {
+  margin-top: 30px;
+}
+
+.clone-voice-subheader {
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+.clone-voice-content {
+  background-color: var(--background);
+  padding: 12px;
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 15px;
+}
+
+.clone-voice-audio {
+  width: 100%;
+  margin-top: 10px;
+  outline: none;
+}
+
+.clone-voice-download-button {
+   display: inline-block;
+   margin-top: 1rem;
+   padding: 0.5rem 1rem;
+   background-color: var(--primary);
+   color: white;
+   text-decoration: none;
+   border-radius: 5px;
+   font-weight: 500;
+   transition: background-color 0.3s ease;
+  }
+  
+  .clone-voice-download-button:hover {
+   background-color: var(--primary-hover);
+  }
+  
+
+@media screen and (max-width: 768px) {
+  .clone-voice-options {
+    flex-direction: column;
+  }
+}
